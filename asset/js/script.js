@@ -4,6 +4,8 @@ let b3 = document.getElementById("b3")
 let b4 = document.getElementById("b4")
 let parent = document.getElementById("parent")
 let start = document.getElementById("start")
+let reset = document.getElementById("reset")
+let title = document.querySelector('.titre');
 let child = null;
 let interval = null;
 let timeout = null;
@@ -25,9 +27,16 @@ function round_color()
     parent.children.item(child).innerText = "Gagnant";
 }
 
+function endGame(){
+        b1.style.color = "white";
+        b2.style.color = "white";
+        b3.style.color = "white";
+        b4.style.color = "white"
+}
+
 start.addEventListener('click', function () {
     if (!interval) {
-        interval = setInterval(round_color, 1000);
+        interval = setInterval(round_color, 500);
     }
 
     if (!timeout) {
@@ -38,11 +47,13 @@ start.addEventListener('click', function () {
         e.preventDefault();
         if(e.target.innerText == "Gagnant")
         {
-            console.log("Vous avez gagné!");
+            endGame();
+            title.innerText = "Felicitation, vous avez gagné!";
         }
         else
         {
-            console.log("Vous avez perdu !")
+            endGame();
+            title.innerText = "Desolé! vous avez perdu!";
         }
     });
 
@@ -60,7 +71,7 @@ start.addEventListener('click', function () {
         // b2.innerText = "2";
         // b3.innerText = "3";
         // b4.innerText = "4";
-    }, 2 * 1000);
+    }, 2 * 2000);
 
 
 });

@@ -9,6 +9,7 @@ body
  background-color:aliceblue ;   
 }
 
+
 .block
 {
     display:inline-block;
@@ -45,15 +46,17 @@ body
     font-size: xxx-large;
 }
 
-.lanceur
+.btn_jeu
 {
+    color: black;
     border:none;
     padding: 20px;
     font-size: large;
     background-color:orangered;
     border-radius: 8px;
+    text-decoration: none;
 }
-.lanceur:hover
+.btn_jeu:hover
 {
     box-shadow: rgba(0, 0, 0, 2) 2px 2px;
     cursor: pointer;
@@ -64,4 +67,9 @@ body
 .center
 {
     text-align: center;
+}
+
+#lol
+{
+    color: #6db302;
 }

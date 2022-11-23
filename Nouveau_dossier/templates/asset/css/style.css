@@ -40,7 +40,7 @@ body
     margin-left: 4%;
 }
 
-.titre span
+.title span
 {
     color:green;
     font-size: xxx-large;
@@ -72,4 +72,9 @@ body
 #lol
 {
     color: #6db302;
+}
+
+h5 span{
+    color:green;
+    font-size: x-large;
 }

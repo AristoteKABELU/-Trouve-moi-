@@ -1,14 +1,17 @@
-let b1 = document.getElementById("b1")
-let b2 = document.getElementById("b2")
-let b3 = document.getElementById("b3")
-let b4 = document.getElementById("b4")
-let parent = document.getElementById("parent")
-let start = document.getElementById("start")
-let reset = document.getElementById("reset")
+let b1 = document.getElementById("b1");
+let b2 = document.getElementById("b2");
+let b3 = document.getElementById("b3");
+let b4 = document.getElementById("b4");
+let parent = document.getElementById("parent");
+let start = document.getElementById("start");
+let reset = document.getElementById("reset");
 let title = document.querySelector('.titre');
 let child = null;
 let interval = null;
 let timeout = null;
+let score = 0;
+let stat = null;
+let nom = 'kabelu'
 
 
 function round_color()
@@ -28,10 +31,10 @@ function round_color()
 }
 
 function endGame(){
-        b1.style.color = "white";
-        b2.style.color = "white";
-        b3.style.color = "white";
-        b4.style.color = "white"
+        b1.style.color = "black";
+        b2.style.color = "black";
+        b3.style.color = "black";
+        b4.style.color = "black"
 }
 
 start.addEventListener('click', function () {
@@ -48,13 +51,16 @@ start.addEventListener('click', function () {
         if(e.target.innerText == "Gagnant")
         {
             endGame();
-            title.innerText = "Felicitation, vous avez gagné!";
+            score = 1;
+            stat = "gagné :)"
         }
         else
         {
             endGame();
-            title.innerText = "Desolé! vous avez perdu!";
+            score = 0;
+            stat = "perdu :(";
         }
+        window.location.href = "./index.php?score=" + score +"&stat=" + stat;
     });
 
     timeout = setTimeout(function () {
@@ -75,3 +81,4 @@ start.addEventListener('click', function () {
 
 
 });
+

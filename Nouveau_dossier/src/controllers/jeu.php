@@ -13,7 +13,9 @@ class Jeu
         $_SESSION['user_name'] = strtoupper($name);
         $user_name = $_SESSION['user_name'];
         DataBase::registerUser($user_name);
+        $score = DataBase::getScore($user_name);
 
+        
         require('./templates/jeu.php');
     }
 }

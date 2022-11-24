@@ -3,18 +3,9 @@
 <?php ob_start(); ?>
 
 <div class="">
-    <?php if(isset($message)): ?>
-    <h5><?= $message ?><h5>
-    <?php endif; ?>
-
-    <?php if(!empty($stat)): ?>
-        <h6>Vous avez <?= $stat ?>  votre score est de : <?= $score ?> </h6>
-    <?php else: ?>
-        <h6>Veuillez entrez votre nom utilisateur ;)</h6>
-    <?php endif; ?>
     <form action="index.php" method="POST">
-        <input type="text" name="name" id=""  placeholder="Nom" <?=$attribut??''?> required style='<?=$display?>'>
-        <input type="submit">
+        <input type="text" name="user_name" id=""  placeholder="Utilisateur(Ex:Ariskab22)" required>
+        <input type="submit" value="Jouer">
     </form>
 </div>
 

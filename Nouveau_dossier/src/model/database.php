@@ -17,6 +17,7 @@
 
         public static function registerUser(string $user):void
         {
+            $user = strtolower($user);
             $statement = self::getConnection()->prepare(
                 'INSERT INTO `t_users`(`user_name`,`creation_date`) VALUES(?, now())');
             $statement->execute([$user]);
@@ -46,16 +47,28 @@
         public static function getUsers():array
         {
             $statement = self::getConnection()->prepare(
-                'SELECT * FROM `t_users`');
+                'SELECT * FROM `t_users` ORDER BY `score` DESC');
             $statement->execute();
             $rows = [];
             while(($row = $statement->fetch())){
                 $user = [];
                 $user['user_name'] = $row['user_name'];
                 $user['score'] = $row['score'];
+                $user['creation_date'] = $row['creation_date'];
                 $rows[] = $user;
             }
             return $rows;
+        }
+
+        public static function in_DataBase(string $user):bool
+        {
+            $statement = self::getConnection()->prepare(
+                'SELECT score FROM `t_users`WHERE `user_name`= ?');
+
+            $statement->execute([$user]);
+            $row = $statement->fetch();
+
+            return !empty($row);
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-namespace Application\src\controllers\jeu;
+namespace Application\src\controllers\score;
 
 require_once('./src/model/database.php');
 use Application\src\model\database\DataBase;

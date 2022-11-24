@@ -1,8 +1,11 @@
-<?php $title = 'Utilisateurs' ?>
+<?php 
+$title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
 <?php ob_start(); ?>
 
 <div>
+    <?php if (!(isset($dashboard))):?>
     <h3>Utilisateur:  <?= htmlspecialchars($_SESSION['user_name'])?></h3>
+    <?php endif;?>
 </div>
 <div>
     <table>
@@ -19,6 +22,11 @@
                     <td><?=$user['user_name']?></td>
                     <td><?=$user['score']?></td>
                     <td><?=$user['creation_date']?></td>
+                    <td>
+                        <?php if((isset($dashboard))): ?>
+                        <a href="index.php?admin=delete&username=<?=$user['user_name']?>">Supprimer</a>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

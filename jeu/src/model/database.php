@@ -70,6 +70,14 @@
 
             return !empty($row);
         }
+
+        public static function delete_user(string $user):void
+        {
+            $statement = self::getConnection()->prepare(
+                'DELETE FROM `t_users` WHERE `user_name` = ?');
+            $statement->execute([$user]);
+        }
+
     }
 
 ?>

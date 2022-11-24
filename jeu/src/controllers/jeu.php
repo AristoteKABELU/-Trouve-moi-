@@ -10,7 +10,7 @@ class Jeu
 {
     public function execute(string $name):void
     {
-        $_SESSION['user_name'] = strtoupper($name);
+        $_SESSION['user_name'] = strtolower($name);
         $user_name = $_SESSION['user_name'];
         $score = DataBase::getScore($user_name);
 

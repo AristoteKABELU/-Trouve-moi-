@@ -6,12 +6,11 @@ let parent = document.getElementById("parent");
 let start = document.getElementById("start");
 let reset = document.getElementById("reset");
 let title = document.querySelector('.titre');
+let find_me = document.getElementsByClassName('trouve');
 let child = null;
 let interval = null;
 let timeout = null;
-let score = 0;
-let stat = null;
-let nom = 'kabelu'
+let score = 0; 
 
 
 function round_color()
@@ -21,21 +20,15 @@ function round_color()
     b3.style.backgroundColor = "#" + Math.random().toString().slice(6,12);    
     b4.style.backgroundColor = "#" + Math.random().toString().slice(6,12);
 
-    b1.innerText = "Trouve moi";
-    b2.innerText = "Trouve moi";
-    b3.innerText = "Trouve moi";
-    b4.innerText = "Trouve moi";
+    b1.innerHTML = "<p class='trouve'>Trouve moi</p>";
+    b2.innerHTML = "<p class='trouve'>Trouve moi</p>";
+    b3.innerHTML = "<p class='trouve'>Trouve moi</p>";
+    b4.innerHTML = "<p class='trouve'>Trouve moi</p>";
 
     child =Math.floor(Math.random()*4);
-    parent.children.item(child).innerText = "Gagnant";
+    parent.children.item(child).innerHTML = "<p class='trouve'> Gagnant </p>";
 }
 
-function endGame(){
-        b1.style.color = "black";
-        b2.style.color = "black";
-        b3.style.color = "black";
-        b4.style.color = "black"
-}
 
 start.addEventListener('click', function () {
     if (!interval) {
@@ -48,37 +41,29 @@ start.addEventListener('click', function () {
 
     parent.addEventListener('click', function (e) {
         e.preventDefault();
-        if(e.target.innerText == "Gagnant")
-        {
-            endGame();
+        if(e.target.innerText == "Gagnant"){
             score = 1;
-            stat = "gagné :)"
-        }
-        else
-        {
-            endGame();
-            score = 0;
-            stat = "perdu :(";
-        }
-        window.location.href = "./index.php?score=" + score +"&stat=" + stat;
+        }else{
+            score = 0; }
+
+        window.location.href = "./index.php?score=" + score;
     });
 
     timeout = setTimeout(function () {
+
         clearInterval(interval);
         b1.style.backgroundColor = "black";
         b2.style.backgroundColor = "black";
         b3.style.backgroundColor = "black";
         b4.style.backgroundColor = "black";
-        b1.style.color = "black";
-        b2.style.color = "black";
-        b3.style.color = "black";
-        b4.style.color = "black";
-        // b1.innerText = "1";
-        // b2.innerText = "2";
-        // b3.innerText = "3";
-        // b4.innerText = "4";
-    }, 2 * 2000);
 
+        for(let i = 0; i<find_me.length ; i++){
+            find_me[i].style.opacity = "0";
+        }
+        
+
+
+    }, 2 * 2000);
 
 });
 

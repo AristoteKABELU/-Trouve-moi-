@@ -14,15 +14,13 @@
     <div>
         <h1 class="titre">Trouver le mot <span>"Gagnant"</span></h1>
         <div class="conteneur" id="parent">
-            <div class ="block" id="b1">Trouve moi</div>
-            <div class ="block" id="b2">Trouve moi</div>
-            <div class ="block" id="b3">Trouve moi</div>
-            <div class ="block" id="b4">Trouve moi</div>
+            <div class ="block" id="b1"></div>
+            <div class ="block" id="b2"></div>
+            <div class ="block" id="b3"></div>
+            <div class ="block" id="b4"></div>
         </div>
         <div class="center">
             <button id="start" class="btn_jeu">Lancer le jeu</button>
-            <a href="./index.php" class="btn_jeu">retour</a>
-            <a href="./dec.php" class="btn_jeu">Quitter</a>
         </div>
     </div>
 </div>

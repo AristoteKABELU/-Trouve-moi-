@@ -41,7 +41,7 @@ try{
         }
 
     }else if(isset($_SESSION['user_name'])){
-        if(isset($_GET['score']) && isset($_GET['stat'])){
+        if(isset($_GET['score'])){
             (new AddScore())->execute($_SESSION['user_name'], $_GET['score']);
             header('Location: index.php');
 

@@ -1,18 +1,16 @@
 <?php
-require('./src/functions.php');
-require_once('./src/model/database.php');
-require_once('./src/controllers/jeu.php');
-require_once('./src/controllers/addScore.php');
-require_once('./src/controllers/scores.php');
-require_once('./src/controllers/dashboard.php');
 
+require 'vendor/autoload.php';
+
+require_once('src/functions.php');
 
 //use names spaces
-use Application\src\model\DataBase\DataBase;
-use Application\src\controllers\Jeu\Jeu;
-use Application\src\controlleurs\addScore\AddScore;
-use Application\src\controllers\score\Score;
-use Application\src\controllers\dashboard\Dashboard;
+
+use App\model\DataBase;
+use App\controllers\Jeu;
+use App\controllers\AddScore;
+use App\controllers\Score;
+use App\controllers\Dashboard;
 
 init_php_session();
 $exist = null;

@@ -1,6 +1,6 @@
 <?php
 
-    namespace Application\src\model\DataBase;
+    namespace App\model;
     
     class DataBase
     {

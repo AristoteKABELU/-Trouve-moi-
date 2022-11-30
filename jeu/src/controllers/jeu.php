@@ -1,13 +1,18 @@
 <?php
 
-namespace Application\src\controllers\Jeu;
+namespace App\controllers;
 
-require_once('./src/model/database.php');
-use Application\src\model\database\DataBase;
+use App\model\DataBase;
 
 
 class Jeu
 {
+    /**
+     * affiche la page "Jeu" avec l'enregistrement de la session
+     * 
+     * @return void
+     * @param string $name
+     */
     public function execute(string $name):void
     {
         $_SESSION['user_name'] = strtolower($name);

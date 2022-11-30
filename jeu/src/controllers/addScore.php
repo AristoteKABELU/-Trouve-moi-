@@ -1,8 +1,7 @@
 <?php
-namespace Application\src\controlleurs\addScore;
+namespace App\controllers;
 
-require_once('./src/model/database.php');
-use Application\src\model\database\DataBase;
+use App\model\Database;
 
 class AddScore
 {

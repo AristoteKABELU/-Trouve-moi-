@@ -1,8 +1,7 @@
 <?php 
-namespace Application\src\controllers\dashboard;
+namespace App\controllers;
 
-require_once('./src/model/database.php');
-use Application\src\model\database\DataBase;
+use App\model\DataBase;
 
 class Dashboard
 {

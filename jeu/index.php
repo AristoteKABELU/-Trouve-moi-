@@ -4,8 +4,6 @@ require 'vendor/autoload.php';
 
 require_once('src/functions.php');
 
-//use names spaces
-
 use App\model\DataBase;
 use App\controllers\Jeu;
 use App\controllers\AddScore;
@@ -33,11 +31,12 @@ try{
             require('./templates/admin/login.php');
             
         }elseif ($_GET['admin'] === 'delete'){
-
             DataBase::delete_user($_GET['username']);
             (new Dashboard())->execute();
         }
-
+        else{
+            throw new Exception("404! Page not Found");
+        }
     }else if(isset($_SESSION['user_name'])){
         if(isset($_GET['score'])){
             (new AddScore())->execute($_SESSION['user_name'], $_GET['score']);
@@ -54,7 +53,6 @@ try{
     }else{
         require('./templates/homepage.php');
     }
-
 }catch(Exception $e){
     echo $e->getMessage();
 }

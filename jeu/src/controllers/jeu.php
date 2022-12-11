@@ -8,7 +8,7 @@ use App\model\DataBase;
 class Jeu
 {
     /**
-     * affiche la page "Jeu" avec l'enregistrement de la session
+     * register session and display game party
      * 
      * @return void
      * @param string $name

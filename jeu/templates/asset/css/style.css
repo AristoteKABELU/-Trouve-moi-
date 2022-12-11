@@ -78,3 +78,7 @@ h5 span{
     color:green;
     font-size: x-large;
 }
+
+.homepage{
+    background-image: url('../img/squid_game.jpg');
+}

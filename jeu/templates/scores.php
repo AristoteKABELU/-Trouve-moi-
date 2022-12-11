@@ -24,7 +24,9 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
                     <td><?=$user['creation_date']?></td>
                     <td>
                         <?php if((isset($dashboard))): ?>
-                        <a href="index.php?admin=delete&username=<?=$user['user_name']?>">Supprimer</a>
+                            <form action="index.php?admin=delete&username=<?=$user['user_name']?>" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')">
+                                <button type="submit" class="btn btn-danger mb-1">supprimer</button>
+                            </form>
                         <?php endif; ?>
                     </td>
                 </tr>

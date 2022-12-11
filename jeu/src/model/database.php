@@ -1,7 +1,10 @@
 <?php
 
     namespace App\model;
-    
+        
+    /**
+     * DataBase
+     */
     class DataBase
     {
         static ?\PDO $database = null;
@@ -14,7 +17,13 @@
 
             return self::$database;
         }
-
+        
+        /**
+         * register user in DataBase
+         *
+         * @param  mixed $user
+         * @return void
+         */
         public static function registerUser(string $user):void
         {
             $user = strtolower($user);
@@ -22,7 +31,13 @@
                 'INSERT INTO `t_users`(`user_name`,`creation_date`) VALUES(?, now())');
             $statement->execute([$user]);
         }
-
+        
+        /**
+         * get score of user
+         *
+         * @param  mixed $user
+         * @return int
+         */
         public static function getScore(string $user):int
         {
             $statement = self::getConnection()->prepare(
@@ -34,7 +49,14 @@
             
             return $row['score'];
         }
-
+        
+        /**
+         * add new score to old score
+         *
+         * @param  mixed $user
+         * @param  mixed $score
+         * @return void
+         */
         public static function addScore(string $user, int $score):void
         {
             $statement = self::getConnection()->prepare(
@@ -43,7 +65,12 @@
                 WHERE `user_name`= ?');
             $statement->execute([$score, $user]);
         }
-
+        
+        /**
+         * get all users in our DataBase
+         *
+         * @return array
+         */
         public static function getUsers():array
         {
             $statement = self::getConnection()->prepare(
@@ -59,7 +86,13 @@
             }
             return $rows;
         }
-
+        
+        /**
+         * verify if user exists in DataBase
+         *
+         * @param  mixed $user
+         * @return bool
+         */
         public static function in_DataBase(string $user):bool
         {
             $statement = self::getConnection()->prepare(
@@ -70,7 +103,13 @@
 
             return !empty($row);
         }
-
+        
+        /**
+         * delete user in DataBase
+         *
+         * @param  mixed $user
+         * @return void
+         */
         public static function delete_user(string $user):void
         {
             $statement = self::getConnection()->prepare(

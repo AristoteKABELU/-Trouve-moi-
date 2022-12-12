@@ -8,7 +8,7 @@
         <a href="./index.php?action=scores" class="btn btn-secondary">Autres Utilisateurs</a>
     </div>
     <div>
-        <h1 class="titre">Trouver le mot <span>"Gagnant"</span></h1>
+        <h1 class="titre">Trouver le chiffre "1"</h1>
         <div class="conteneur" id="parent">
             <div class ="block" id="b1"></div>
             <div class ="block" id="b2"></div>
@@ -18,6 +18,9 @@
         <div class="center">
             <button id="start" class="btn_jeu">Lancer le jeu</button>
         </div>
+    </div>
+    <div>
+        <h5>Le Code source: <a href="https://github.com/AristoteKABELU" target="_blank"> AristoteKABELU</a></h5>        
     </div>
 </div>
 

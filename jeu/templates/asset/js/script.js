@@ -20,13 +20,13 @@ function round_color()
     b3.style.backgroundColor = "#" + Math.random().toString().slice(6,12);    
     b4.style.backgroundColor = "#" + Math.random().toString().slice(6,12);
 
-    b1.innerHTML = "<p class='trouve'>Trouve moi</p>";
-    b2.innerHTML = "<p class='trouve'>Trouve moi</p>";
-    b3.innerHTML = "<p class='trouve'>Trouve moi</p>";
-    b4.innerHTML = "<p class='trouve'>Trouve moi</p>";
+    b1.innerHTML = "<p class='trouve'>0</p>";
+    b2.innerHTML = "<p class='trouve'>0</p>";
+    b3.innerHTML = "<p class='trouve'>0</p>";
+    b4.innerHTML = "<p class='trouve'>0</p>";
 
     child =Math.floor(Math.random()*4);
-    parent.children.item(child).innerHTML = "<p class='trouve'> Gagnant </p>";
+    parent.children.item(child).innerHTML = "<p class='trouve'> 1 </p>";
 }
 
 
@@ -41,7 +41,7 @@ start.addEventListener('click', function () {
 
     parent.addEventListener('click', function (e) {
         e.preventDefault();
-        if(e.target.innerText == "Gagnant"){
+        if(e.target.innerText == "1"){
             score = 1;
         }else{
             score = 0; }

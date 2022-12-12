@@ -32,7 +32,7 @@ try{
             
         }elseif ($_GET['admin'] === 'delete'){
             (new Delete())->execute($_GET['username']);
-            (new Dashboard())->execute($_POST);
+            (new Dashboard())->execute($_GET);
         }
         else{
             throw new Exception("404! Page not Found");

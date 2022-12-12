@@ -19,12 +19,12 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
         <tbody>
             <?php foreach($users as $user): ?>
                 <tr>
-                    <td><?=$user['user_name']?></td>
+                    <td><?=htmlspecialchars($user['user_name'])?></td>
                     <td><?=$user['score']?></td>
                     <td><?=$user['creation_date']?></td>
                     <td>
                         <?php if((isset($dashboard))): ?>
-                            <form action="index.php?admin=delete&username=<?=$user['user_name']?>" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')" method="POST">
+                            <form action="index.php?admin=delete&username=<?=htmlspecialchars($user['user_name'])?>" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')" method="POST">
                                 <button type="submit" class="btn btn-danger mb-1">supprimer</button>
                             </form>
                         <?php endif; ?>

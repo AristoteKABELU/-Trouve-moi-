@@ -112,18 +112,4 @@ class User
         return !empty($row);
     }
     
-        
-    /**
-     * delete_user
-     *
-     * @param  mixed $user
-     * @return void
-     */
-    public function delete_user(string $user):void
-    {
-        $statement = $this->connexion->getConnection()->prepare(
-            'DELETE FROM `t_users` WHERE `user_name` = ?');
-        $statement->execute([$user]);
-    }
-
 }

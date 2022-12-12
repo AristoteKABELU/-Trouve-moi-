@@ -13,8 +13,7 @@ use App\controllers\user\InDatabase;
 
 init_php_session();
 $exist = null;
-
-
+  
 try{
     if (isset($_POST['user_name']) && !empty($_POST['user_name'])) {
         if ((new InDatabase())->execute($_POST['user_name'])) {
@@ -25,7 +24,7 @@ try{
         }
 
     }else if(isset($_POST['admin_name']) && isset($_POST['password_admin'])){
-        (new Dashboard())->execute();
+        (new Dashboard())->execute($_POST);
     }
     else if (isset($_GET['admin']) && !empty($_GET['admin'])){
         if ($_GET['admin'] === 'login'){
@@ -33,7 +32,7 @@ try{
             
         }elseif ($_GET['admin'] === 'delete'){
             (new Delete())->execute($_GET['username']);
-            (new Dashboard())->execute();
+            (new Dashboard())->execute($_POST);
         }
         else{
             throw new Exception("404! Page not Found");

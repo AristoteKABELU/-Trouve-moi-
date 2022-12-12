@@ -8,7 +8,7 @@ use App\model\User;
 class Jeu
 {
     /**
-     * register session and display game party
+     *Display game party
      * 
      * @return void
      * @param string $name

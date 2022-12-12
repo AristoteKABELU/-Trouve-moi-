@@ -4,6 +4,9 @@ $title = "Authentification"?>
 
 <form action="" method="POST" class="p-5">
     <h1>Authentification</h1>
+    <?php if (isset($notAllowed)) : ?>
+        <div class="alert alert-danger">Vous n'etes pas autorisé</div>
+    <?php endif; ?>
     <div class="form-group">
         <input class="form-control mb-2" type="text" name="admin_name" placeholder="Nom utilisateur" required>
         <input class="form-control mb-2" type="password" name="password_admin" placeholder="Mot de passe" required>

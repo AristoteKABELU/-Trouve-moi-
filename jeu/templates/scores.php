@@ -8,7 +8,7 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
     <?php endif;?>
 </div>
 <div>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Nom Utilisateur</th>
@@ -24,7 +24,7 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
                     <td><?=$user['creation_date']?></td>
                     <td>
                         <?php if((isset($dashboard))): ?>
-                            <form action="index.php?admin=delete&username=<?=$user['user_name']?>" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')">
+                            <form action="index.php?admin=delete&username=<?=$user['user_name']?>" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')" method="POST">
                                 <button type="submit" class="btn btn-danger mb-1">supprimer</button>
                             </form>
                         <?php endif; ?>
@@ -34,7 +34,7 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
         </tbody>
     </table>
 </div>
-<a href="./index.php">Retour</a>
+<a href="./index.php" class="btn btn-primary mt-4">Retour</a>
 
 <?php $content= ob_get_clean(); ?>
 <?php require('./templates/layout/layout.php'); ?>

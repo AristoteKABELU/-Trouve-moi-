@@ -1,7 +1,8 @@
 <?php 
-namespace App\controllers;
+namespace App\controllers\admin;
 
 use App\model\DataBase;
+use App\model\User;
 
 class Dashboard
 {    
@@ -14,7 +15,9 @@ class Dashboard
     public function execute()
     {
         $dashboard = 1;
-        $users = DataBase::getUsers();   
+        $users = new User;
+        $users = $users->getUsers();
+        
         require('./templates/admin/dashboard.php');
     }
 }

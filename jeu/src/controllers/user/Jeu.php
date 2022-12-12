@@ -1,9 +1,9 @@
 <?php
 
-namespace App\controllers;
+namespace App\controllers\user;
 
 use App\model\DataBase;
-
+use App\model\User;
 
 class Jeu
 {
@@ -17,7 +17,9 @@ class Jeu
     {
         $_SESSION['user_name'] = strtolower($name);
         $user_name = $_SESSION['user_name'];
-        $score = DataBase::getScore($user_name);
+        $user = new User;
+        $user->registerUser($name);
+        $score = $user->getScore($user_name);
 
         
         require('./templates/jeu.php');

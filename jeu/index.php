@@ -4,22 +4,23 @@ require 'vendor/autoload.php';
 
 require_once('src/functions.php');
 
-use App\model\DataBase;
-use App\controllers\Jeu;
-use App\controllers\AddScore;
-use App\controllers\Score;
-use App\controllers\Dashboard;
+use App\controllers\user\Jeu;
+use App\controllers\user\AddScore;
+use App\controllers\user\Score;
+use App\controllers\admin\Dashboard;
+use App\controllers\user\Delete;
+use App\controllers\user\InDatabase;
 
 init_php_session();
 $exist = null;
 
+
 try{
-    if(isset($_POST['user_name']) && !empty($_POST['user_name'])){
-        if (DataBase::in_DataBase($_POST['user_name'])){
+    if (isset($_POST['user_name']) && !empty($_POST['user_name'])) {
+        if ((new InDatabase())->execute($_POST['user_name'])) {
             $exist = $_POST['user_name'];
             require('./templates/homepage.php');
         }else{
-            DataBase::registerUser($_POST['user_name']);
             (new Jeu())->execute($_POST['user_name']);
         }
 
@@ -31,7 +32,7 @@ try{
             require('./templates/admin/login.php');
             
         }elseif ($_GET['admin'] === 'delete'){
-            DataBase::delete_user($_GET['username']);
+            (new Delete())->execute($_GET['username']);
             (new Dashboard())->execute();
         }
         else{
@@ -42,13 +43,13 @@ try{
             (new AddScore())->execute($_SESSION['user_name'], $_GET['score']);
             header('Location: index.php');
 
-        }if(isset($_GET['action']) && !empty($_GET['action'])){
+        }elseif(isset($_GET['action']) && !empty($_GET['action'])){
             if($_GET['action'] === 'scores'){
                 (new Score())->execute();
             }
         }
         else{
-            (new Jeu())->execute($_SESSION['user_name']);
+            (new Jeu())->execute($_SESSION['user_name']??'');
         }
     }else{
         require('./templates/homepage.php');

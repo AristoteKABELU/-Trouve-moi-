@@ -1,15 +1,11 @@
 <?php $title = 'Trouve moi'?>
 <?php ob_start(); ?>
 
-
-<div>
-    
-</div>
 <div class="row">
     <div>
         <h5>Utilisateur: <?=htmlspecialchars($user_name)?></h5>
         <h5>Score: <?=$score?></h5>
-        <a href="./index.php?action=scores">Autres Utilisateurs</a>
+        <a href="./index.php?action=scores" class="btn btn-secondary">Autres Utilisateurs</a>
     </div>
     <div>
         <h1 class="titre">Trouver le mot <span>"Gagnant"</span></h1>

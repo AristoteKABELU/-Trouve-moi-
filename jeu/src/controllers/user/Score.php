@@ -1,7 +1,8 @@
 <?php
-namespace App\controllers;
+namespace App\controllers\user;
 
 use App\model\Database;
+use App\model\User;
 
 class Score
 {    
@@ -11,7 +12,8 @@ class Score
      * @return void
      */
     public function execute(){
-        $users = DataBase::getUsers();
+        $users = new User;
+        $users = $users->getUsers();
         require('./templates/scores.php');
     }
 }

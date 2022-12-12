@@ -1,7 +1,7 @@
 <?php
-namespace App\controllers;
+namespace App\controllers\user;
 
-use App\model\Database;
+use App\model\User;
 
 class AddScore
 {    
@@ -14,7 +14,8 @@ class AddScore
      */
     public function execute(string $user_name, string $score):void
     {
-        $score = (int) $score + DataBase::getScore($user_name);
-        DataBase::addScore($user_name, $score);
+        $user = new User();
+        $score = (int) $score + $user->getScore($user_name);
+        $user->addScore($user_name, $score);
     }
 }

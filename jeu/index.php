@@ -8,7 +8,7 @@ use App\controllers\user\Score;
 use App\controllers\admin\Dashboard;
 use App\controllers\admin\login;
 use App\controllers\admin\Logout;
-use App\controllers\user\Delete;
+use App\controllers\admin\Delete;
 use App\controllers\user\InDatabase;
 use App\otherClass\Session;
 

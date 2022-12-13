@@ -1,8 +1,7 @@
 <?php 
-namespace App\controllers\user;
+namespace App\controllers\admin;
 
 use App\model\Admin;
-use App\model\User;
 
 class Delete
 {    

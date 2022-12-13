@@ -9,4 +9,5 @@ create table if not exists `t_users` (
     `creation_date` datetime
 );
 
+
 --drop database db_game;

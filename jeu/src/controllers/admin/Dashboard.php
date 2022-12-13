@@ -1,6 +1,7 @@
 <?php 
 namespace App\controllers\admin;
 
+use App\model\Admin;
 use App\model\DataBase;
 use App\model\User;
 
@@ -15,7 +16,7 @@ class Dashboard
     public function execute(array $input) : void
     {
         if (isset($input['admin_name'], $input['password_admin'])) {
-            if (($input['admin_name'] == 'Admin' && $input['password_admin'] == 'Admin'))  {
+            if (Admin::VerifyPassword($input['admin_name'], $input['password_admin'])) {
                 $_SESSION['admin_name'] = $input['admin_name'];   
                 //Allow to show a delete option in [.templates\scores.php]
                 $dashboard = 1;

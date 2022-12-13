@@ -7,6 +7,11 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
     <h3>Utilisateur:  <?= htmlspecialchars($_SESSION['user_name'])?></h3>
     <?php endif;?>
 </div>
+<?php if (isset($dashboard)): ?>
+    <a href="index.php?admin=deconnexion" class="btn btn-secondary mt-4">Deconnexion</a>
+<?php else: ?>
+    <a href="./index.php" class="btn btn-danger mt-4">Retour</a>
+<?php endif ?>
 <div>
     <table class="table">
         <thead>
@@ -34,7 +39,6 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
         </tbody>
     </table>
 </div>
-<a href="./index.php" class="btn btn-primary mt-4">Retour</a>
 
 <?php $content= ob_get_clean(); ?>
 <?php require('./templates/layout/layout.php'); ?>

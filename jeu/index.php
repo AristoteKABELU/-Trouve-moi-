@@ -2,16 +2,18 @@
 
 require 'vendor/autoload.php';
 
-require_once('src/functions.php');
-
 use App\controllers\user\Jeu;
 use App\controllers\user\AddScore;
 use App\controllers\user\Score;
 use App\controllers\admin\Dashboard;
+use App\controllers\admin\login;
+use App\controllers\admin\Logout;
 use App\controllers\user\Delete;
 use App\controllers\user\InDatabase;
+use App\otherClass\Session;
 
-init_php_session();
+//Session valide pendant 1 Mois
+Session::init_session(60*60*24*30);
 $exist = null;
   
 try{
@@ -24,17 +26,20 @@ try{
         }
 
     }else if(isset($_POST['admin_name']) && isset($_POST['password_admin'])){
-        (new Dashboard())->execute($_POST);
+        (new Dashboard())->execute($_POST, $_SESSION);
     }
     else if (isset($_GET['admin']) && !empty($_GET['admin'])){
         if ($_GET['admin'] === 'login'){
-            require('./templates/admin/login.php');
+            (new login())->execute($_SESSION);
             
         }elseif ($_GET['admin'] === 'delete'){
             (new Delete())->execute($_GET['username']);
-            (new Dashboard())->execute($_GET);
-        }
-        else{
+            (new login())->execute($_SESSION);
+
+        } elseif ($_GET['admin'] === 'deconnexion') {
+            (new Logout())->execute();
+
+        } else {
             throw new Exception("404! Page not Found");
         }
     }else if(isset($_SESSION['user_name'])){
@@ -46,8 +51,7 @@ try{
             if($_GET['action'] === 'scores'){
                 (new Score())->execute();
             }
-        }
-        else{
+        } else {
             (new Jeu())->execute($_SESSION['user_name']??'');
         }
     }else{

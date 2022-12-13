@@ -3,9 +3,9 @@
 
 <div class="row">
     <div>
-        <h5>Utilisateur: <?=htmlspecialchars($user_name)?></h5>
+        <h5>Joueur: <?=htmlspecialchars($user_name)?></h5>
         <h5>Score: <?=$score?></h5>
-        <a href="./index.php?action=scores" class="btn btn-secondary">Autres Utilisateurs</a>
+        <a href="./index.php?action=scores" class="btn btn-secondary">Autres joueurs</a>
     </div>
     <div>
         <h1 class="titre">Trouver le chiffre "1"</h1>

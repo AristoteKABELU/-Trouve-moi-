@@ -1,5 +1,12 @@
-<?php 
-$title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
+<?php
+
+use App\model\User;
+use App\otherClass\Pagination;
+
+$title = isset($dashboard)?'Dashboard':'Utilisateurs';
+
+?>
+
 <?php ob_start(); ?>
 
 <div>
@@ -38,6 +45,14 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';?>
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div>
+        <?php if ( $page < (new User())->countPage()): ?>
+        <a href="index.php?action=scores&p=<?= $page + 1?>" class="btn btn-primary">Page Suivante</a>
+        <?php endif ?>
+        <?php if ($page > 1): ?>
+            <a href="index.php?action=scores&p=<?= $page - 1?>" class="btn btn-primary">Page precedente</a>
+        <?php endif ?>
+    </div>
 </div>
 
 <?php $content= ob_get_clean(); ?>

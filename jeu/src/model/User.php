@@ -3,6 +3,7 @@
 namespace App\model;
 
 use App\lib\DatabaseConnexion;
+use App\otherClass\Pagination;
 
 class User
 {
@@ -77,10 +78,14 @@ class User
      *
      * @return array
      */
-    public function getUsers():array
+    public function getUsers(int $offset):array
     {
-        $statement = $this->connexion->getConnection()->prepare(
-            'SELECT * FROM `t_users` ORDER BY `score` DESC');
+        $query = 'SELECT * FROM `t_users` 
+                    ORDER BY `score` DESC
+                    LIMIT '. Pagination::LIMIT.' OFFSET '. $offset;
+        
+        $statement = $this->connexion->getConnection()->prepare($query);
+        
         $statement->execute();
         $rows = [];
         while(($row = $statement->fetch())){
@@ -111,5 +116,14 @@ class User
 
         return !empty($row);
     }
+
+    public function countPage () : int 
+    {
+        $statement = $this->connexion->getConnection()->prepare('SELECT count(id) as count FROM `t_users`');
+        $statement->execute(); 
+        $pages = (int) $statement->fetch()['count'];
+        return ceil($pages/Pagination::LIMIT);
+    }
+
     
 }

@@ -15,7 +15,14 @@ use App\otherClass\Session;
 //Session valide pendant 1 Mois
 Session::init_session(60*60*24*30);
 $exist = null;
-  
+
+function dump(...$value) {
+    echo '<pre>';
+    var_dump($value);
+    echo '<pre>';
+}
+
+
 try{
     if (isset($_POST['user_name']) && !empty($_POST['user_name'])) {
         if ((new InDatabase())->execute($_POST['user_name'])) {
@@ -28,17 +35,19 @@ try{
     }else if(isset($_POST['admin_name']) && isset($_POST['password_admin'])){
         (new Dashboard())->execute($_POST, $_SESSION);
     }
-    else if (isset($_GET['admin']) && !empty($_GET['admin'])){
+    else if (isset($_GET['admin'])){
         if ($_GET['admin'] === 'login'){
-            (new login())->execute($_SESSION);
+            (new login())->execute($_SESSION, $_GET);
             
         }elseif ($_GET['admin'] === 'delete'){
             (new Delete())->execute($_GET['username']);
-            (new login())->execute($_SESSION);
+            (new login())->execute($_SESSION, $_GET);
 
         } elseif ($_GET['admin'] === 'deconnexion') {
             (new Logout())->execute();
 
+        } elseif (isset($_GET['p'])) {
+            (new login())->execute($_SESSION, $_GET);
         } else {
             throw new Exception("404! Page not Found");
         }
@@ -49,7 +58,7 @@ try{
 
         }elseif(isset($_GET['action']) && !empty($_GET['action'])){
             if($_GET['action'] === 'scores'){
-                (new Score())->execute();
+                (new Score())->execute($_GET);
             }
         } else {
             (new Jeu())->execute($_SESSION['user_name']??'');

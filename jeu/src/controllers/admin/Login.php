@@ -3,6 +3,7 @@
 namespace App\controllers\admin;
 
 use App\model\User;
+use App\otherClass\Pagination;
 
 class login
 {    
@@ -12,11 +13,13 @@ class login
      * @param  mixed $input
      * @return void
      */
-    public function execute (array $input) : void
+    public function execute (array $input, array $input_page) : void
     {
         if (isset($input['admin_name'])) {
             $dashboard = 1; 
-            $users = (new User())->getUsers();
+            $page =  $input_page['p'] ?? 1;
+            $offset = Pagination::offset($page);
+            $users = (new User())->getUsers($offset);
             require('./templates/admin/dashboard.php');
         } else {
             require('./templates/admin/login.php');

@@ -1,8 +1,8 @@
 <?php
 namespace App\controllers\user;
 
-use App\model\Database;
 use App\model\User;
+use App\otherClass\Pagination;
 
 class Score
 {    
@@ -11,9 +11,11 @@ class Score
      *
      * @return void
      */
-    public function execute(){
+    public function execute (array $input) {
         $users = new User;
-        $users = $users->getUsers();
+        $page =  $input['p'] ?? 1;
+        $offset = Pagination::offset($page);
+        $users = $users->getUsers($offset);
         require('./templates/scores.php');
     }
 }

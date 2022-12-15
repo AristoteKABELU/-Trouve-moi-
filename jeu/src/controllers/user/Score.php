@@ -11,11 +11,12 @@ class Score
      *
      * @return void
      */
-    public function execute (array $input) {
-        $users = new User;
-        $page =  $input['p'] ?? 1;
+    public function execute (array $input_page) {
+    
+        $page =  $input_page['p'] ?? 1;
         $offset = Pagination::offset($page);
-        $users = $users->getUsers($offset);
+        $pages = (new User)->countPage();
+        $users = (new User)->getUsers($offset);
         require('./templates/scores.php');
     }
 }

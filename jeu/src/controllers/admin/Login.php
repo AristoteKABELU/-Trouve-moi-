@@ -16,9 +16,10 @@ class login
     public function execute (array $input, array $input_page) : void
     {
         if (isset($input['admin_name'])) {
-            $dashboard = 1; 
+            
             $page =  $input_page['p'] ?? 1;
             $offset = Pagination::offset($page);
+            $pages = (new User())->countPage();
             $users = (new User())->getUsers($offset);
             require('./templates/admin/dashboard.php');
         } else {

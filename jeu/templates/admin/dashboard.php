@@ -1,18 +1,9 @@
 <?php $title = "Dashboard"; ?>
 <?php ob_start(); ?>
 
-<?php
-
-use App\model\User;
-use App\otherClass\Pagination;
-
-$title = isset($dashboard)?'Dashboard':'Utilisateurs';
-
-?>
+<?php $title = 'Utilisateurs' ?>
 
 <?php ob_start(); ?>
-
-
 
 <a href="index.php?admin=deconnexion" class="btn btn-secondary mt-4">Deconnexion</a>
 
@@ -41,7 +32,7 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';
         </tbody>
     </table>
     <div>
-        <?php if ( $page < (new User())->countPage()): ?>
+        <?php if ($page <  $pages): ?>
         <a href="index.php?admin&p=<?= $page + 1?>" class="btn btn-primary">Page Suivante</a>
         <?php endif ?>
         <?php if ($page > 1): ?>

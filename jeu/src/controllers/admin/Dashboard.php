@@ -2,8 +2,8 @@
 namespace App\controllers\admin;
 
 use App\model\Admin;
-use App\model\DataBase;
 use App\model\User;
+use App\otherClass\Pagination;
 
 class Dashboard
 {    
@@ -18,11 +18,12 @@ class Dashboard
         if (isset($input['admin_name'], $input['password_admin'])) {
             if (Admin::VerifyPassword($input['admin_name'], $input['password_admin'])) {
                 $_SESSION['admin_name'] = $input['admin_name'];   
-                //Allow to show a delete option in [.templates\scores.php]
-                $dashboard = 1;
-                $users = new User;
-                $users = $users->getUsers();
-
+        
+                $page =  $input_page['p'] ?? 1;
+                $offset = Pagination::offset($page);
+                $pages = (new User)->countPage();
+                $users = (new User)->getUsers($offset);
+                
                 require('./templates/admin/dashboard.php');
             }else{
                 $notAllowed = true;

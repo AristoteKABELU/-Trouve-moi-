@@ -1,11 +1,4 @@
-<?php
-
-use App\model\User;
-use App\otherClass\Pagination;
-
-$title = isset($dashboard)?'Dashboard':'Utilisateurs';
-
-?>
+<?php $title = 'Utilisateurs' ?>
 
 <?php ob_start(); ?>
 
@@ -14,11 +7,9 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';
     <h3>Utilisateur:  <?= htmlspecialchars($_SESSION['user_name'])?></h3>
     <?php endif;?>
 </div>
-<?php if (isset($dashboard)): ?>
-    <a href="index.php?admin=deconnexion" class="btn btn-secondary mt-4">Deconnexion</a>
-<?php else: ?>
-    <a href="./index.php" class="btn btn-danger mt-4">Retour</a>
-<?php endif ?>
+
+<a href="./index.php" class="btn btn-danger mt-4">Retour</a>
+
 <div>
     <table class="table">
         <thead>
@@ -46,7 +37,7 @@ $title = isset($dashboard)?'Dashboard':'Utilisateurs';
         </tbody>
     </table>
     <div>
-        <?php if ( $page < (new User())->countPage()): ?>
+        <?php if ( $page < $pages): ?>
         <a href="index.php?action=scores&p=<?= $page + 1?>" class="btn btn-primary">Page Suivante</a>
         <?php endif ?>
         <?php if ($page > 1): ?>

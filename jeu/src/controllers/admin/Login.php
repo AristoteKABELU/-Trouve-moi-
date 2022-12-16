@@ -5,7 +5,7 @@ namespace App\controllers\admin;
 use App\model\User;
 use App\otherClass\Pagination;
 
-class login
+class Login
 {    
     /**
      * execute {Dashboard template} if is set $_SESSION['admin_name'], else {login template}

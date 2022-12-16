@@ -6,7 +6,7 @@ use App\controllers\user\Jeu;
 use App\controllers\user\AddScore;
 use App\controllers\user\Score;
 use App\controllers\admin\Dashboard;
-use App\controllers\admin\login;
+use App\controllers\admin\Login;
 use App\controllers\admin\Logout;
 use App\controllers\admin\Delete;
 use App\controllers\user\InDatabase;
@@ -31,17 +31,17 @@ try{
     }
     else if (isset($_GET['admin'])){
         if ($_GET['admin'] === 'login'){
-            (new login())->execute($_SESSION, $_GET);
+            (new Login())->execute($_SESSION, $_GET);
             
         }elseif (($_GET['admin'] === 'delete') && isset($_POST['username'])) {
             (new Delete())->execute($_POST['username']);
-            (new login())->execute($_SESSION, $_GET);
+            (new Login())->execute($_SESSION, $_GET);
 
         } elseif ($_GET['admin'] === 'deconnexion') {
             (new Logout())->execute();
 
         } elseif (isset($_GET['p'])) {
-            (new login())->execute($_SESSION, $_GET);
+            (new Login())->execute($_SESSION, $_GET);
         } else {
             throw new Exception("404! Page not Found");
         }

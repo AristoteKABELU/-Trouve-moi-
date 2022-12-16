@@ -23,7 +23,8 @@
                     <td><?=$user['score']?></td>
                     <td><?=$user['creation_date']?></td>
                     <td>
-                        <form action="index.php?admin=delete&username=<?=htmlspecialchars($user['user_name'])?>" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')" method="POST">
+                        <form action="index.php?admin=delete" onsubmit="return confirm('Voulez vous supprimez cet utilisateur?')" method="POST">
+                            <input type="hidden" name="username" value="<?=$user['user_name']?>">
                             <button type="submit" class="btn btn-danger mb-1">supprimer</button>
                         </form>
                     </td>

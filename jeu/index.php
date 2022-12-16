@@ -16,12 +16,6 @@ use App\otherClass\Session;
 Session::init_session(60*60*24*30);
 $exist = null;
 
-function dump(...$value) {
-    echo '<pre>';
-    var_dump($value);
-    echo '<pre>';
-}
-
 
 try{
     if (isset($_POST['user_name']) && !empty($_POST['user_name'])) {
@@ -39,8 +33,8 @@ try{
         if ($_GET['admin'] === 'login'){
             (new login())->execute($_SESSION, $_GET);
             
-        }elseif ($_GET['admin'] === 'delete'){
-            (new Delete())->execute($_GET['username']);
+        }elseif (($_GET['admin'] === 'delete') && isset($_POST['username'])) {
+            (new Delete())->execute($_POST['username']);
             (new login())->execute($_SESSION, $_GET);
 
         } elseif ($_GET['admin'] === 'deconnexion') {
